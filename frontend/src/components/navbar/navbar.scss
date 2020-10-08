@@ -1,0 +1,145 @@
+@import "../../style/commonStyles.scss";
+
+$colorArray: #81ecec, #ff7675, #55efc4, #a29bfe, #fd79a8, #ffeaa7;
+
+.navigation {
+  @extend .myfixed;
+  height: 95vh;
+  overflow: hidden;
+  background-color: rgb(61, 178, 233);
+  z-index: 1001;
+  box-shadow: 0 0 5px rgb(61, 178, 233), 0 0 25px rgb(61, 178, 233),
+    0 0 75px rgb(61, 178, 233), 0 0 100px rgb(61, 178, 233);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all ease-in-out 500ms;
+}
+.menu-button-fixer {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 1002;
+
+  .menu-button {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all ease-in-out 500ms;
+
+    .menu-button__burger {
+      width: 30px;
+      height: 2px;
+      background: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(255, 101, 47, 0.2);
+      transition: all ease-in-out 500ms;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 2px;
+        background: white;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(255, 101, 47, 0.2);
+        transition: all ease-in-out 500ms;
+      }
+
+      &:before {
+        transform: translateY(-8px);
+      }
+      &:after {
+        transform: translateY(8px);
+      }
+    }
+  }
+}
+
+.menu-button.open {
+  .menu-button__burger {
+    transform: translateX(-50px);
+    background: transparent;
+    box-shadow: none;
+
+    &:before {
+      transform: rotate(45deg) translate(35px, -35px);
+    }
+
+    &:after {
+      transform: rotate(-45deg) translate(35px, 35px);
+    }
+  }
+}
+
+.navigation {
+  ul {
+    margin: 0;
+    position: relative;
+
+    &:hover li a {
+      color: #0002;
+    }
+
+    li {
+      text-align: center;
+      list-style: none;
+
+      &:hover a {
+        color: #000;
+        background: #fff;
+      }
+
+      a {
+        color: #333;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-size: 2em;
+        padding: 5px 20px;
+        display: inline-flex;
+        font-weight: 700;
+        transition: 0.5s;
+
+        &:before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 40%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transform: translate(-50%, -50%);
+          font-size: 3em;
+          color: rgba(0, 0, 0, 0.1);
+          border-radius: 50%;
+          z-index: -1;
+          opacity: 0;
+          font-weight: 900;
+          text-transform: uppercase;
+          letter-spacing: 500px;
+          transition: letter-spacing 0.5s, left 0.5s;
+        }
+
+        &:hover:before {
+          content: attr(data-text);
+          opacity: 1;
+          letter-spacing: 10px;
+          left: 50%;
+          width: 1800px;
+          height: 1800px;
+        }
+      }
+    }
+  }
+}
+
+@for $i from 1 through 6 {
+  .navigation ul li:nth-child(#{$i}) a:before {
+    background-color: nth($colorArray, $i);
+  }
+}

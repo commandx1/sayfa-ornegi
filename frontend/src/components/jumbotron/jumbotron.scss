@@ -1,0 +1,85 @@
+@import "../../style/commonStyles.scss";
+
+$polygon1: polygon(
+  0 0,
+  68% 0,
+  39% 11%,
+  66% 20%,
+  38% 31%,
+  65% 40%,
+  32% 46%,
+  66% 55%,
+  26% 61%,
+  66% 73%,
+  34% 80%,
+  69% 89%,
+  28% 95%,
+  61% 100%,
+  0 100%
+);
+
+$polygon2: polygon(
+  100% 0,
+  68% 0,
+  39% 11%,
+  66% 20%,
+  38% 31%,
+  65% 40%,
+  32% 46%,
+  66% 55%,
+  26% 61%,
+  66% 73%,
+  34% 80%,
+  69% 89%,
+  28% 95%,
+  61% 100%,
+  100% 100%
+);
+
+section {
+  @extend .myfixed;
+  z-index: 1000;
+  pointer-events: none;
+
+  .side {
+    @extend .myAbsolute;
+    background: url("../../assets/wall.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+section {
+  .side#side1 {
+    clip-path: $polygon1;
+  }
+
+  .side#side2 {
+    clip-path: $polygon2;
+  }
+}
+
+.contentBx {
+  background: #010615;
+  color: #fff;
+  padding: 5%;
+  padding-top: 150vh;
+
+  h1 {
+    width: 100%;
+    height: 60vh;
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    color: rgb(108, 167, 255);
+    text-shadow: 0 0 5px rgb(108, 167, 255), 0 0 10px rgb(108, 167, 255),
+      0 0 25px rgb(108, 167, 255), 0 0 50px rgb(108, 167, 255);
+  }
+}
+
+@media (max-width: 769px) {
+  .contentBx {
+    padding-top: 100vh;
+  }
+}
